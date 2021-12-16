@@ -4,6 +4,7 @@ export const addAnswer = (answer, city) => {
   return {
     type: ADD_ANSWER,
     payload: {
+      city,
       guess: answer,
       actual: 10,
     },

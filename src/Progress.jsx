@@ -2,7 +2,7 @@ import react, { useState } from "react";
 import { useSelector } from 'react-redux';
 
 export default function Question(){
-    const items = useSelector(state => state.answers)
+    const items = useSelector(state => state.answersReducer.answers)
     console.log(items)
     return (
         <div>

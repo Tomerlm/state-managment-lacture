@@ -1,6 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import reducer from './reducer';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import answersReducer from './answersReducer';
+import cityReducer from './cityReducer';
 
-export default configureStore({
-  reducer,
+const rootReducer = combineReducers({
+  answersReducer,
+  cityReducer,
 });
+
+export default createStore(rootReducer, applyMiddleware(thunk));
