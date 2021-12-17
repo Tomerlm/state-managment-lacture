@@ -1,21 +1,25 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useCity } from "./state/hooks";
 import { addAnswer } from './state/actions';
 
-const cities = ['Haifa', 'Boston', 'Yervan', 'Manila', 'Cairo'];
-
 export default function Question(){
-    const [city, setCity] = useState(cities[0]);
+    const queryData = useCity();
+    console.log(queryData);
+    const {isLoading, isError, data: city, refetch: refetchCity} = queryData;
+    useEffect(() => {
+        refetchCity()
+    }, [])
     const [answer, setAnswer] = useState('')
     const dispatch = useDispatch();
     return (
         <div>
-            <h3>{city}</h3>
+            {isError && <p>we have an error.</p>}
+            <h3>{isLoading ? 'loading' : city}</h3>
             <input value={answer} onChange={(e) => setAnswer(e.target.value)}></input>
             <button onClick={() => {
-                dispatch(addAnswer(answer))
-                const newCity = cities.indexOf(city) + 1;
-                setCity(cities[newCity]);
+                dispatch(addAnswer(answer, city))
+                refetchCity();
             }}>Answer</button>
         </div>
     )
