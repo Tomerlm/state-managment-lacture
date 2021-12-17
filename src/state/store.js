@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './reducer';
+import answersReducer from './answersReducer';
+import cityReducer from './citySlice';
 
 export default configureStore({
-  reducer,
+  reducer: {
+    answersReducer,
+    cityReducer,
+  },
 });
