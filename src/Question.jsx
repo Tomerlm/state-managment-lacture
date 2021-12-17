@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import { addAnswer } from './state/actions';
 import { getCityThunk } from "./state/citySlice";
 
-const cities = ['Haifa', 'Boston', 'Yervan', 'Manila', 'Cairo'];
-
 export default function Question(){
     const city = useSelector(state => state.cityReducer.city)
     const isLoading = useSelector(state => state.cityReducer.isLoading)
